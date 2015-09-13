@@ -3,9 +3,11 @@
 
   "name": "Popsicle",
   "description": "This extension pops up search results in the same window on selecting text. 
-  Saving one second at a time",
+Saving one second at a time!",
   "version": "1.0",
-
+  "icons": { "16": "popsicle16.png",
+           "48": "popsicle48.png",
+          "128": "popsicle.png" },
   "browser_action": {
     "default_icon": "popsicle.png",
     "default_popup": "popup.html",
