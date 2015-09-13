@@ -8,7 +8,7 @@
  * @param {function(string)} callback - called when the URL of the current tab
  *   is found.
  */
-//$(document).ready(function() { 
+
 window.onload = function(){
   function getCurrentTabUrl(callback) {
   // Query filter to be passed to chrome.tabs.query - see
@@ -150,6 +150,7 @@ document.addEventListener('mouseup', function (e) {
   
   if(click==2) click = 0;
 /*}, false);
+
 // Close the bubble when we click on the screen.
 document.addEventListener('click', function (e) {*/
   
@@ -169,73 +170,36 @@ function changeIframe(selection){
 }
 function changeIframe(selection){
   console.log(isWindowOpen);
-    var k = "http://duckduckgo.com/?q=!walmart "+ selection;
+    var k = "http://duckduckgo.com/?q=!walmart "+selection;
     bubbleDOM.innerHTML = "<iframe id='blah' src='http://www.walmart.com/search/?query="+selection+"'></iframe>";
-    isWindowOpen = true;
-}
-function changeIframe2(selection){
-    console.log(isWindowOpen);
-    //var k = "http://duckduckgo.com/?q=!wiki"+selection;
-    bubbleDOM.innerHTML = "<iframe id='blah2' src='https://en.wikipedia.org/'></iframe>";
     isWindowOpen = true;
 }
 // Move that bubble to the appropriate location.
 function renderBubble(mouseX, mouseY, selection) {
 
   bubbleDOM.innerHTML = "<input id='SO' type='button' value='Stack Overflow' />";
-  bubbleDOM.innerHTML += "<input id='WM' type='button' value='Walmart'/>";
-  bubbleDOM.innerHTML += "<input id='WP' type='button' onClick='changeIframe2()' value='Wikipedia' />";
+  bubbleDOM.innerHTML += "<input id='WM' type='button' value='Walmart' />";
   bubbleDOM.innerHTML += "<iframe id='blah' src='https://duckduckgo.com/?q="+selection+"'></iframe>";
   
 
   bubbleDOM.style.top = mouseY + 'px';
   bubbleDOM.style.left = mouseX + 'px';
   bubbleDOM.style.visibility = 'visible';
-  /*
-  var link = "http://api.walmartlabs.com/v1/search?apiKey=ztdjzwqqv4mg5ht88h9pe2xt&query=" + selection;
-  var data;
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      var myArr = JSON.parse(xmlhttp.responseText);
-      parseData(myArr);
-    }
-  }
-  xmlhttp.open("GET", link, true);
-  xmlhttp.send();*/
-  //parse the data to put into iframe as innerHTML.
-  //set innerHTML of iframe to parsed data
-  
-  function parseData(arr) {//WALMART
-    var out = " ";
-    if (arr.numItems === 0)
-    {
-      document.getElementById('blah').innerHTML = "<p>No Results.</p>";
-    }
-    else
-    {
-    for (i=0; i<arr.numItems; i++)
-    {
-          
-      out += "<div style='margin: 10px 5px; border-bottom: 2px solid black; padding: 5px 0'><div><img src='" + arr.items[i].thumbnailImage + "'/>" + "</div><div>" + arr.items[i].name + "</div><div>Price: $" + arr.items[i].salePrice + '</div><div> Rating : ' + arr.items[i].customerRating + '</div><div><a href="'+ arr.items[i].addToCartUrl + '"><button>Add to cart</button></a></div></div>';
-    }
-    bubbleDOM.innerHTML = out;
-    console.log(out);
-    }
-    
-  }
+  document.getElementById('blah').src = "http://api.walmartlabs.com/v1/search?apiKey=ztdjzwqqv4mg5ht88h9pe2xt&query=ipod";
 
-  
+  //bubbleDOM.innerHTML = "hi";
+}
+
+document.addEventListener('click', function (e) {
+  if(e.target.id == 'SO'){
+    console.log("hi");
+    changeIframe('ss');
+  }
+});
+
+
+
 }
 
 
 
-/*document.addEventListener('click', function (e) {
-  if(e.target.id == 'SO'){
-    changeIframe('ss');
-  });*/
-  document.addEventListener('click', function (e) {
-  if(e.target.id == 'WP'){
-    changeIframe2('aa');
-  }
-});
