@@ -1,0 +1,52 @@
+.selection_bubble {
+  	  visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background:-webkit-gradient(linear, left top, left bottom, from(#000000), to(#FFFFFF));
+}
+
+.example-twitter {
+  visibility: hidden;
+  position:fixed;
+  padding:15px;
+  margin:10px 0 0.5em;
+  color:#333;
+  width: 400px;
+  height:500px;
+  z-index:100;
+  background:#eee;
+  /* css3 */
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+  -webkit-scrollbar-width: 2em;
+  -webkit-scrollbar-height: 2em
+  -webkit-scrollbar-button-background:#ccc;
+  -webkit-scrollbar-track-piece-background:#888;
+  -webkit-scrollbar-thumb-background:#eee​;
+}
+
+#blah{
+	height:485px;
+	width:385px;
+}
+
+.example-twitter p {font-size:28px; line-height:1.25em;}
+
+/* this isn't necessary, just saves me having to edit the HTML of the demo */
+
+
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.example-twitter + p {padding-left:15px; font:14px Arial, sans-serif;}
+
+.box{
+    display: none;
+    width: 100%;
+}
+
+a:hover + .box,.box:hover{
+    display: block;
+    position: relative;
+    z-index: 100;
+}
