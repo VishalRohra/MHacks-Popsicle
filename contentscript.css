@@ -7,12 +7,12 @@
 }
 
 .example-twitter {
-  visibility: hidden;
+  visibility: visible;
   position:fixed;
   padding:15px;
   margin:10px 0 0.5em;
   color:#333;
-  width: 400px;
+  width: 415px;
   height:500px;
   z-index:100;
   background:#eee;
@@ -27,9 +27,16 @@
   -webkit-scrollbar-thumb-background:#eee​;
 }
 
+
+
 #blah{
-	height:485px;
-	width:385px;
+	height:455px;
+	width:415px;
+}
+
+#blah2{
+  height:455px;
+  width:415px;
 }
 
 .example-twitter p {font-size:28px; line-height:1.25em;}

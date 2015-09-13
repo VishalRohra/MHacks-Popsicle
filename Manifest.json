@@ -1,14 +1,15 @@
 {
   "manifest_version": 2,
 
-  "name": "Getting started example",
-  "description": "This extension shows a Google Image search result for the current page",
+  "name": "Popsicle",
+  "description": "This extension pops up search results in the same window on selecting text. 
+  Saving one second at a time",
   "version": "1.0",
 
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "popsicle.png",
     "default_popup": "popup.html",
-    "default_title": "Click here!"
+    "default_title": "Pop it!"
   },
   "permissions": [
     "activeTab",

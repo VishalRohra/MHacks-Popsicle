@@ -143,7 +143,7 @@ document.addEventListener('mouseup', function (e) {
       console.log('HI2');
       click = 0;
       if(e.target != document.getElementById('example-twitter')) {
-        bubbleDOM.style.visibility = 'hidden';
+        bubbleDOM.style.visibility = 'visible';
         isWindowOpen = false;
       }
     }
@@ -162,23 +162,25 @@ document.addEventListener('click', function (e) {*/
 
 }, false);
 
-function changeIframe(selection){
+/*function changeIframe(selection){
   console.log(isWindowOpen);
-    var k = "http://duckduckgo.com/?q=!so "+selection;
-    bubbleDOM.innerHTML = "<iframe id='blah' src='http://www.stackoverflow.com/?q="+selection+"'></iframe>";
+    bubbleDOM.innerHTML = "<a id='blah' href='http://www.stackoverflow.com/?q="+selection+"'></a>";
     isWindowOpen = true;
-}
-function changeIframe(selection){
-  console.log(isWindowOpen);
-    var k = "http://duckduckgo.com/?q=!walmart "+selection;
-    bubbleDOM.innerHTML = "<iframe id='blah' src='http://www.walmart.com/search/?query="+selection+"'></iframe>";
+}*/
+function changeIframe2(selection){
+    console.log(isWindowOpen);
+    //var k = "http://duckduckgo.com/?q=!wiki"+selection;
+    bubbleDOM.innerHTML = "<iframe id='blah2' src='https://en.wikipedia.org/'></iframe>";
     isWindowOpen = true;
 }
 // Move that bubble to the appropriate location.
-function renderBubble(mouseX, mouseY, selection) {
-
-  bubbleDOM.innerHTML = "<input id='SO' type='button' value='Stack Overflow' />";
-  bubbleDOM.innerHTML = "<input id='WM' type='button' value='Walmart' />";
+function renderBubble(mouseX, mouseY, selection, link) {
+  bubbleDOM.innerHTML = "<input id='BA' type='button' value='<' />";
+  bubbleDOM.innerHTML += "<input id='SO' type='button' value='Stack Overflow' />";
+  bubbleDOM.innerHTML += "<input id='WM' type='button'  value='Walmart' />";
+  bubbleDOM.innerHTML += "<input id='WP' type='button' onClick='changeIframe2()' value='Wikipedia' />";
+  bubbleDOM.innerHTML += "<input id='QU' type='button' value='Quora' />";
+  bubbleDOM.innerHTML += "<input id='IM' type='button' value='IMDB' />";
   bubbleDOM.innerHTML += "<iframe id='blah' src='https://duckduckgo.com/?q="+selection+"'></iframe>";
   
 
@@ -187,13 +189,14 @@ function renderBubble(mouseX, mouseY, selection) {
   bubbleDOM.style.visibility = 'visible';
 }
 
-document.addEventListener('click', function (e) {
+/*document.addEventListener('click', function (e) {
   if(e.target.id == 'SO'){
     changeIframe('ss');
   }
+  });*/
   document.addEventListener('click', function (e) {
-  if(e.target.id == 'WM'){
-    changeIframe('aa');
+  if(e.target.id == 'WP'){
+    changeIframe2('aa');
   }
 });
 }
