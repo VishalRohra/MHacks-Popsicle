@@ -12,8 +12,8 @@
   padding:15px;
   margin:10px 0 0.5em;
   color:#333;
-  width: 415px;
-  height:500px;
+  width: 400px;
+  height:350px;
   z-index:100;
   background:#eee;
   /* css3 */
@@ -25,6 +25,8 @@
   -webkit-scrollbar-button-background:#ccc;
   -webkit-scrollbar-track-piece-background:#888;
   -webkit-scrollbar-thumb-background:#eee​;
+  display: block;
+  overflow: scroll;
 }
 
 

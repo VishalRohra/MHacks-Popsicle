@@ -125,11 +125,11 @@ bubbleDOM.setAttribute('class', 'example-twitter');
 bubbleDOM.setAttribute('id', 'example-twitter');
 document.body.appendChild(bubbleDOM);
 var isWindowOpen = false, click = 0;
-
+var selection;
 // Lets listen to mouseup DOM events.
 document.addEventListener('mouseup', function (e) {
   click ++;
-    var selection = window.getSelection().toString();
+    selection = window.getSelection().toString();
   console.log(click, selection, isWindowOpen);
   if (selection.length > 0) {
     if(isWindowOpen == false && click >= 1){
@@ -160,6 +160,13 @@ document.addEventListener('click', function (e) {*/
         isWindowOpen = false;
     }*/
 
+
+document.addEventListener('click', function(e) {
+  if (e.target.id == 'WM')
+  {
+    getWalmart(selection);
+  }
+});
 }, false);
 
 /*function changeIframe(selection){
@@ -175,10 +182,11 @@ document.addEventListener('click', function (e) {*/
 }*/
 // Move that bubble to the appropriate location.
 
-function renderBubble(mouseX, mouseY, selection, link) {
+function renderBubble(mouseX, mouseY, selection) {
+
   bubbleDOM.innerHTML = "<a href='javascript:history.back()'><input id='BA' type='button' value='<' /></a>";
   bubbleDOM.innerHTML += "<a href='https://stackoverflow.com/?q="+selection+"' target='_blank'><input id='SO' type='button' value='Stack Overflow' /></a>";
-  bubbleDOM.innerHTML += "<a href='https://www.walmart.com/search/?query="+selection+"' target='_blank'><input id='WM' type='button'  value='Walmart' /></a>";
+  bubbleDOM.innerHTML += "<input id='WM' type='button'  value='Walmart' />";
   bubbleDOM.innerHTML += "<a href='https://en.wikipedia.org/wiki/"+selection+"' target='_blank'><input id='WP' type='button' onClick='changeIframe2()' value='Wikipedia' /></a>";
   bubbleDOM.innerHTML += "<a href='http://www.quora.com/search?q="+selection+"' target='_blank'><input id='QU' type='button' value='Quora' /></a>";
   bubbleDOM.innerHTML += "<a href='http://www.imdb.com/find?q="+selection+"' target='_blank'><input id='IM' type='button' value='IMDB' /></a>";
@@ -188,17 +196,44 @@ function renderBubble(mouseX, mouseY, selection, link) {
   bubbleDOM.style.top = mouseY + 'px';
   bubbleDOM.style.left = mouseX + 'px';
   bubbleDOM.style.visibility = 'visible';
+
+
 }
 
-/*document.addEventListener('click', function (e) {
-  if(e.target.id == 'SO'){
-    changeIframe('ss');
+function getWalmart(selection) {
+  var link = "http://api.walmartlabs.com/v1/search?apiKey=ztdjzwqqv4mg5ht88h9pe2xt&query=" + selection;
+  var data;
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      var myArr = JSON.parse(xmlhttp.responseText);
+      parseData(myArr);
+    }
   }
-  });*//*
-  document.addEventListener('click', function (e) {
-  if(e.target.id == 'WP'){
-    changeIframe2('aa');
+  xmlhttp.open("GET", link, true);
+  xmlhttp.send();
+
+  function parseData(arr) {//WALMART
+    var out = " ";
+    if (arr.numItems === 0)
+    {
+      document.getElementById('blah').innerHTML = "<p>No Results.</p>";
+    }
+    else
+    {
+    for (i=0; i<arr.numItems; i++)
+    {
+          
+      out += "<div style='margin: 10px 5px; border-bottom: 2px solid black; padding: 5px 0'><div><img src='" + arr.items[i].thumbnailImage + "'/>" + "</div><div>" + arr.items[i].name + "</div><div>Price: $" + arr.items[i].salePrice + '</div><div> Rating : ' + arr.items[i].customerRating + '</div><div><a href="'+ arr.items[i].addToCartUrl + '"><button>Add to cart</button></a></div></div>';
+    }
+    bubbleDOM.innerHTML = out;
+    console.log(out);
+    }
+    
   }
-});*/
+}
+
+
+
 }
 
