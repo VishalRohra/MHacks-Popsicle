@@ -165,6 +165,12 @@ document.addEventListener('click', function (e) {*/
 function changeIframe(selection){
   console.log(isWindowOpen);
     var k = "http://duckduckgo.com/?q=!so "+selection;
+    bubbleDOM.innerHTML = "<iframe id='blah' src='http://www.stackoverflow.com/?q="+selection+"'></iframe>";
+    isWindowOpen = true;
+}
+function changeIframe(selection){
+  console.log(isWindowOpen);
+    var k = "http://duckduckgo.com/?q=!walmart "+selection;
     bubbleDOM.innerHTML = "<iframe id='blah' src='http://www.walmart.com/search/?query="+selection+"'></iframe>";
     isWindowOpen = true;
 }
@@ -172,6 +178,7 @@ function changeIframe(selection){
 function renderBubble(mouseX, mouseY, selection) {
 
   bubbleDOM.innerHTML = "<input id='SO' type='button' value='Stack Overflow' />";
+  bubbleDOM.innerHTML = "<input id='WM' type='button' value='Walmart' />";
   bubbleDOM.innerHTML += "<iframe id='blah' src='https://duckduckgo.com/?q="+selection+"'></iframe>";
   
 
@@ -182,8 +189,11 @@ function renderBubble(mouseX, mouseY, selection) {
 
 document.addEventListener('click', function (e) {
   if(e.target.id == 'SO'){
-    console.log("hi");
     changeIframe('ss');
+  }
+  document.addEventListener('click', function (e) {
+  if(e.target.id == 'WM'){
+    changeIframe('aa');
   }
 });
 }
